@@ -1,0 +1,38 @@
+<!-- Task Input Section -->
+<div class="container">
+  <h1>{{title}}</h1>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-8">
+      <input type="text" name="task" class="form-control" #taskInputRef>
+    </div>
+    <div class="col-xs-4">
+      <button class="btn btn-info" (click)="createTask(taskInputRef.value)">Add</button>
+    </div>
+  </div>
+</div>
+
+<!-- Task List Section -->
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <table class="table table-striped">
+        <tr *ngFor="let todo of todoItems;">
+          <td>
+            <s *ngIf="todo.isComplete">{{todo.id}}.  {{todo.name}}</s>
+            <ng-container *ngIf="!todo.isComplete">
+              {{todo.id}}.  {{todo.name}}
+            </ng-container>
+          </td>
+          <td>
+            <button class="btn btn-warning btn-xs" (click)="toggleTaskCompletion(todo.id)">Complete</button>
+            <button class="btn btn-danger btn-xs" (click)="deleteTaskById(todo.id)">Delete</button>
+            <button class="btn btn-primary btn-xs" (click)="editTaskName(todo.id)">Edit</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
